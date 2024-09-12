@@ -2,6 +2,9 @@
   "name": "@conexean/conexean-library",
   "version": "0.1.0",
   "private": false,
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -24,7 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup -c",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c",
     "prepare": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

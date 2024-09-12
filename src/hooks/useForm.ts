@@ -1,19 +1,29 @@
 import { useState, useCallback } from "react";
 
-type ValidationRule<T> = (value: T) => string | true;
+// Exportando os tipos
+export type ValidationRule<T> = (value: T) => string | true;
 
-interface FieldConfig<T> {
+export interface FieldConfig<T> {
   initialValue: T;
   validations: ValidationRule<T>[];
 }
 
-type FormConfig = Record<string, FieldConfig<any>>;
+export type FormConfig = Record<string, FieldConfig<any>>;
 
-type ChangeEvent = 
+export type ChangeEvent = 
   | React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   | { name: string; value: any };
 
-export const useForm = (config: FormConfig) => {
+export type UseFormReturn = {
+  formData: Record<string, any>;
+  errors: Record<string, string>;
+  isSubmitting: boolean;
+  handleChange: (e: ChangeEvent) => void;
+  validateForm: () => boolean;
+  setSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const useForm = (config: FormConfig): UseFormReturn => {
   const initialFormData = Object.entries(config).reduce((acc, [name, field]) => {
     acc[name] = field.initialValue;
     return acc;

@@ -4,6 +4,13 @@ export type { IInput } from './components/Input/Input';
 
 // Hooks
 export { useForm } from './hooks/useForm';
+export type {
+  ValidationRule,
+  FieldConfig,
+  FormConfig,
+  ChangeEvent,
+  UseFormReturn
+} from './hooks/useForm';
 
 // Utilities
 export {
@@ -17,10 +24,7 @@ export {
 
 // Types
 export type {
-  ValidationRule,
   FieldValidation,
   ValidationErrors,
-  FieldConfig,
-  FormFieldConfig,
-  FormConfig
+  FormFieldConfig
 } from './types/validationTypes';

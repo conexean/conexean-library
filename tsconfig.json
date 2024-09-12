@@ -16,7 +16,8 @@
     "jsx": "react-jsx",
     "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": false
   },
   "include": ["src"],
   "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx", "node_modules", "dist"]

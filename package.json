@@ -1,5 +1,5 @@
 {
-  "name": "@conexean/conexean-library",
+  "name": "conexean-library",
   "version": "0.1.0",
   "private": false,
   "types": "dist/index.d.ts",

@@ -1,46 +1,205 @@
-# Getting Started with Create React App
+# Sua Biblioteca de Componentes React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma biblioteca de componentes React com TypeScript e Tailwind CSS.
 
-## Available Scripts
+## Estrutura do Projeto
 
-In the project directory, you can run:
+```
+sua-biblioteca/
+├── src/
+│   ├── components/
+│   │   └── Input/
+│   │       ├── Input.tsx
+│   │       ├── Input.test.tsx
+│   │       └── Input.stories.tsx
+│   ├── index.ts
+│   └── react-app-env.d.ts
+├── .storybook/
+├── dist/
+├── package.json
+├── tsconfig.json
+├── rollup.config.js
+└── README.md
+```
 
-### `npm start`
+## Instalação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install sua-biblioteca
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ou
 
-### `npm test`
+```bash
+yarn add sua-biblioteca
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Uso
 
-### `npm run build`
+```jsx
+import React from 'react';
+import { Input } from 'sua-biblioteca';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function App() {
+  return (
+    <div>
+      <Input 
+        name="example" 
+        id="example" 
+        label="Exemplo de Input" 
+        mask="(##) #####-####"
+      />
+    </div>
+  );
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default App;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Nota: Esta biblioteca utiliza Tailwind CSS. Certifique-se de que seu projeto tem o Tailwind CSS configurado.
 
-### `npm run eject`
+## Componentes Disponíveis
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Input
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Um componente de input com suporte para máscaras e tratamento de erros.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Propriedades:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `name` (string, obrigatório): Nome do input
+- `id` (string, obrigatório): ID do input
+- `label` (string, opcional): Rótulo do input
+- `inputClass` (string, opcional): Classes CSS adicionais para o input
+- `errors` (string, opcional): Mensagem de erro
+- `mask` (string, opcional): Máscara para formatação do input
 
-## Learn More
+## Desenvolvimento
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pré-requisitos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Node.js (versão 14 ou superior)
+- npm ou yarn
+
+### Configuração do Ambiente de Desenvolvimento
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/sua-biblioteca.git
+   cd sua-biblioteca
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Para iniciar o Storybook:
+   ```bash
+   npm run storybook
+   ```
+
+### Criando um Novo Componente
+
+1. Crie uma nova pasta para o componente em `src/components/`:
+   ```bash
+   mkdir src/components/NomeDoComponente
+   ```
+
+2. Crie os arquivos do componente:
+   - `NomeDoComponente.tsx`: O componente React
+   - `NomeDoComponente.test.tsx`: Testes do componente
+   - `NomeDoComponente.stories.tsx`: Histórias do Storybook
+
+3. Implemente o componente em `NomeDoComponente.tsx`:
+   ```tsx
+   import React from 'react';
+
+   interface NomeDoComponenteProps {
+     // Defina as props aqui
+   }
+
+   const NomeDoComponente: React.FC<NomeDoComponenteProps> = (props) => {
+     // Implemente o componente aqui
+   };
+
+   export default NomeDoComponente;
+   ```
+
+4. Escreva testes em `NomeDoComponente.test.tsx`:
+   ```tsx
+   import React from 'react';
+   import { render } from '@testing-library/react';
+   import NomeDoComponente from './NomeDoComponente';
+
+   describe('NomeDoComponente', () => {
+     it('renders correctly', () => {
+       // Implemente os testes aqui
+     });
+   });
+   ```
+
+5. Crie histórias em `NomeDoComponente.stories.tsx`:
+   ```tsx
+   import React from 'react';
+   import { Meta, StoryFn } from '@storybook/react';
+   import NomeDoComponente from './NomeDoComponente';
+
+   export default {
+     title: 'Components/NomeDoComponente',
+     component: NomeDoComponente,
+   } as Meta<typeof NomeDoComponente>;
+
+   const Template: StoryFn<typeof NomeDoComponente> = (args) => <NomeDoComponente {...args} />;
+
+   export const Default = Template.bind({});
+   Default.args = {
+     // Defina os args padrão aqui
+   };
+   ```
+
+6. Exporte o novo componente em `src/index.ts`:
+   ```typescript
+   export { default as NomeDoComponente } from './components/NomeDoComponente/NomeDoComponente';
+   ```
+
+### Build
+
+Para criar uma build da biblioteca:
+
+```bash
+npm run build
+```
+
+### Publicação
+
+1. Atualize a versão no `package.json`:
+   ```bash
+   npm version patch  # para pequenas correções
+   npm version minor  # para novas funcionalidades
+   npm version major  # para mudanças que quebram compatibilidade
+   ```
+
+2. Publique no npm:
+   ```bash
+   npm publish
+   ```
+
+## Contribuindo
+
+Contribuições são bem-vindas! Por favor, siga estas etapas:
+
+1. Fork o projeto
+2. Crie sua branch de feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## Licença
+
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
+
+## Contato
+
+Seu Nome - [@seutwitter](https://twitter.com/seutwitter) - email@exemplo.com
+
+Link do Projeto: [https://github.com/seu-usuario/sua-biblioteca](https://github.com/seu-usuario/sua-biblioteca)

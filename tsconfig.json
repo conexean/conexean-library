@@ -17,7 +17,9 @@
     "outDir": "./dist",
     "declaration": true,
     "declarationDir": "./dist",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    "sourceMap": true,
+    "rootDir": "./src"
   },
   "include": ["src"],
   "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx", "node_modules", "dist"]
